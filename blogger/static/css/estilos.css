@@ -1,0 +1,281 @@
+
+header{
+
+    margin-bottom: 0px;
+}
+body { padding-top: 55px; }
+
+a,
+a:hover,
+a:focus,
+a:active,
+a.active{
+	outline=0;
+}
+
+
+/* colores #3b5998, #00abf0, #d95232, #ae181f, #66666 #dee1e3 #c7cacb #03658c #283035*/
+a:hover,
+a:focus,
+a:active,
+a.active {
+    text-decoration: none;
+    color: #76B900;
+}
+
+.navbar-inverse {
+    border-color: transparent;
+   
+    
+}
+
+.navbar-inverse .navbar-brand {
+    font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+    color: #f7f7f7;
+}
+
+
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus,
+.navbar-inverse .navbar-brand:active,
+.navbar-inverse .navbar-brand.active {
+    color: #A2C63C;
+}
+
+.navbar-inverse .navbar-collapse {
+    border-color: rgba(255,255,255,.06);
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #fff;
+    background-color: #000;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #A2C63C;
+}
+
+.navbar-inverse .nav li a{
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    color: #fff;
+}
+
+
+.navbar-inverse .nav li a:hover,
+.navbar-inverse .nav li a:focus {
+    outline: 0;
+    color: #76B900;
+}
+
+.navbar-inverse .navbar-nav>.active>a{
+    border-radius: 0;
+    color: #fff;
+    background-color: #fed136;
+}
+
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a:focus {
+    color: #fff;
+    background-color: #76B900;
+}
+
+
+.dropdown ul li a:hover,
+.dropdown ul li a:focus,
+.dropdown ul li a:active,
+.dropdown ul li a.active{
+
+    background: none;
+ }
+
+.dropdown .dropdown-menu li a {
+        color:#333;
+    }
+
+
+  #imagenes,.img-circle,.forma,.btn-primary{
+    -webkit-box-shadow: 0px 0px 18px 0px rgba(48, 50, 50, 0.48);
+    -moz-box-shadow:    0px 0px 18px 0px rgba(48, 50, 50, 0.48);
+    box-shadow:         0px 0px 18px 0px rgba(48, 50, 50, 0.48);   
+
+    
+}
+
+#imagenes{
+  margin-top: 0px;
+
+  
+}
+
+
+@media screen and (max-width: 768px){
+         .text-center,h4,a,.btn-primary,.navbar-inverse .navbar-brand{
+        font-size: 13px;
+    }
+.img-edit{
+    
+
+ min-width:50%;   
+ max-height: 300px;
+}
+
+    
+
+}
+
+       
+.img-edit{
+    
+
+ min-width:100%;   
+ max-height: 300px;    
+
+}
+
+.sesion{
+    margin-right: 0px;
+
+}
+
+.breadcrumb li {
+    font-size: 13px;
+}
+
+.breadcrumb li a {
+    font-size: 12px;
+}
+}
+
+
+ footer{
+        margin: 20px;
+}
+
+section ul{
+    margin-bottom: 0;
+    text-transform: uppercase;
+    text-transform: none;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 40px;
+}
+
+.social ul{
+    list-style: none;
+
+}
+
+.social ul li a{
+
+    display:block;
+    color: #fff;
+    border-color: transparent;
+    background: #222;
+    border-radius: 5px 5px 5px 5px;
+    font-size: 20px;
+    width: 35px;
+    height: 35px;
+    line-height: 30px;
+    outline: 0;
+
+}
+
+
+.social ul li a:hover{background-color: #3b5998;}
+
+
+
+
+.sesion{
+    margin-right: 15px;
+}
+
+
+.forma{
+    width: 200px;
+    height: 200px;
+    margin: 30px 5px;
+    padding: 5px;
+
+}
+
+
+
+
+.text-center{
+padding-top:0px;
+
+}
+
+
+
+.carousel .carousel-indicators li {
+    border-radius: 10px 10px 10px 10px;
+    width: 5%;   
+    
+}
+
+.carousel .carousel-indicators li:hover,
+.carousel .carousel-indicators li:focus,
+.carousel .carousel-indicators li:active,
+.carousel .carousel-indicators li.active{
+     background:#666666;  
+
+}
+.hover>a>img:hover,
+.hover>a>img:focus,
+.hover>a>img:active,
+.hover>a>img.active{
+background:  #76B900;
+  
+}
+
+.portfolio-modal .modal-content h2 p{
+    margin: 20px 0 30px;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #777;
+}
+
+ .modal-header .close{
+    font-size:50px;
+     opacity: .3;
+    color: #76B900;
+   
+
+}
+
+
+.breadcrumb a:hover{
+  text-decoration: none;
+
+
+}
+
+
+.breadcrumb >li+li:before{
+  content: "\00BB";
+  color:#666666;
+}
+
+.tamano{
+   
+    min-width: 75%;
+    max-height: 22px;
+     
+    
+
+
+}
+
+.comentarios{
+    display: none;
+}

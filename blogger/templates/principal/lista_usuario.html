@@ -1,0 +1,29 @@
+{% extends 'layout/institucion_base.html' %}
+
+{% load static %}
+
+{% block content_instituto %}
+	<a href="{% url 'institucion_usuario_add' object.slug_institucion %}" class="btn btn-default open-modal" data-toggle="modal" data-target="#Modal">Agregar usuario</a>
+	<div class="row" style="margin-top: 10px;">
+		{% for usuario in object_list %}
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-2">
+						<div class="img-circle" style="width: 50px; height: 50px; overflow: hidden;">
+							<img src="{% static usuario.foto_usuario.url %}" style="height: 50px; margin-left: -20px;">
+						</div>
+					</div>
+					<div class="col-md-8">
+						<p><b>{{ usuario.user.first_name }} {{ usuario.user.last_name }}</b></p>
+						<p>{{ usuario.user.email }}</p>
+					</div>
+					<div class="col-md-2">
+						<a href="{% url 'delete_usuario_institucion' object.slug_institucion usuario.pk %}" class="btn btn-danger">
+							<i class="glyphicon glyphicon-remove"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

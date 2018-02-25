@@ -1,0 +1,13 @@
+
+{% extends 'layout/institucion_base.html' %}
+
+{% block content_instituto %}
+	{{ object.descripcion_institucion|safe }}
+	<div class="text-center">
+		<a href="{% url 'institucion_entrada' object.slug_institucion %}" class="btn btn-primary">Ver entradas</a>
+		{% if user.userprofile.institucion.slug_institucion == object.slug_institucion or user.is_superuser %}
+			<a href="{% url 'institucion_editar' object.slug_institucion %}" class="btn btn-info open-modal" data-toggle="modal" data-target="#Modal">Editar institución</a>
+		{% endif %}
+	</div>
+	Cantidad de proyectos: {{ count.text }}
+{% endblock %}

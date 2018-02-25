@@ -1,0 +1,18 @@
+{% extends 'layout/institucion_base.html' %}
+
+{% load static %}
+
+{% block content_instituto %}
+	<form action="{% url 'institucion_contacto' object.slug_institucion %}" method="post" accept-charset="utf-8">
+		{% csrf_token %}
+		{% for forms in form %}
+			<div class="form-group">
+				<label>{{ forms.label }}</label>
+				{{ forms }}
+			</div>
+		{% endfor %}
+		<div class="form-group text-center">
+			<button type="submit" class="btn btn-success">Enviar</button>
+		</div>
+	</form>
+{% endblock %}

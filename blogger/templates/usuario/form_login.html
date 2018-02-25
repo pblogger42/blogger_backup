@@ -1,0 +1,43 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+	<div class="container" style="margin-top: 100px;">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="login-panel panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">{{ title }}</h3>
+					</div>
+					<div class="panel-body">
+						{% for message in messages %}
+							<p class="text-{{ message.tags }}">{{ message }}</p>
+						{% endfor %}
+						<form role="form" action="{% url 'login' %}" method="POST">
+							{% csrf_token %}
+							<div class="form-group">
+								<input id="id_username" type="text" class="form-control" name="username" value="" placeholder="Correo electrónico" required>
+							</div>
+							<div class="form-group">
+								<input id="id_password" type="password" class="form-control" name="password" placeholder="Contraseña" required>
+							</div>
+							<div class="text-center">
+								<button type="submit" class="btn btn-success col-md-12">Ingresar</button>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<a href="{% url 'registrate' %}">Crear cuenta</a>
+								</div>
+								<div class="col-md-6 text-right">
+									<a href="{% url 'reset_password' %}">Olvidé mi contraseña</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="text-center">
+					<p>¿Ya tienes cuenta? <a href="{% url 'login' %}" class="url">Ingresa</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

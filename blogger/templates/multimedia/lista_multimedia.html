@@ -1,0 +1,30 @@
+{% extends 'layout/institucion_base.html' %}
+
+{% load static %}
+
+{% block content_head_institucion %}
+	<link rel="stylesheet" href="{% static 'css/light-box.min.css' %}">
+{% endblock content_head_institucion %}
+
+{% block content_instituto %}
+	<h1>
+		{{ title }}
+		{% if user.userprofile.institucion.slug_institucion == object.slug_institucion or user.is_superuser %}
+			<a href="{% url 'institucion_multimedia_add' object.slug_institucion %}" class="btn btn-default open-modal" data-toggle="modal" data-target="#Modal">Subir archivo</a>
+		{% endif %}
+	</h1>
+	<div class="row">
+	{% for obj in object_list %}
+		<div class="col-md-4" style="max-height: 140px; overflow: hidden; margin-bottom: 30px">
+			<a href="{% url 'institucion_multimedia_detalle' obj.institucion.slug_institucion obj.slug_multimedia %}" class="open-modal" data-toggle="modal" data-target="#Modal">
+				<img src="{{ obj.img_resource }}" class="img-responsive">
+			</a>
+		</div>
+	{% empty %}
+		<h3 class="text-center">No hay multimedia</h3>
+	{% endfor %}
+		<div class="col-md-12">
+			{% include 'elements/pagination.html' %}
+		</div>
+	</div>
+{% endblock %}

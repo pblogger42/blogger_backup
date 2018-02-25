@@ -1,0 +1,45 @@
+{% extends 'layout/institucion_base.html' %}
+
+{% load static %}
+
+{% block content_head_institucion %}
+	<style>
+		.article h3{
+			margin: 0px;
+		}
+		.article p{
+			margin: 0px;
+		}
+	</style>
+{% endblock content_head_institucion %}
+
+{% block content_instituto %}
+	<h1>
+		{{ title }}
+		{% if user.userprofile.institucion.slug_institucion == object.slug_institucion or user.is_superuser %}
+			<a href="{% url 'institucion_entrada_crear' object.slug_institucion %}" class="btn btn-default">Nueva entrada</a>
+		{% endif %}
+	</h1>
+	{% for obj in object_list %}
+		<div class="row article">
+			<div class="col-md-5" style="max-height: 325px; overflow: hidden;">
+				<img  src='{% static obj.imagen_portada.url %}' class="img-responsive" alt="img-{{ obj.titulo_entrada }}" />
+			</div>
+			<div class="col-md-7">
+				<h3>{{ obj.titulo_entrada }}</h3>
+				<p><small><b>autor:</b> {{ obj.usuario.first_name }} {{ obj.usuario.last_name }}</small></p>
+				<p><small><b>Fecha de publicación:</b> {{ obj.fecha_entrada}}</small></p>
+				{{ obj.descripcion_entrada|safe|striptags|truncatechars:250}}...
+				<p><a href="{% url 'detalle_entrada' obj.institucion.slug_institucion obj.slug_entrada %}" class="btn btn-primary">Leer más</a></p>
+			</div>
+		</div>
+		<hr/>
+	{% empty %}
+		<h3 class="text-center">No hay Entradas</h3>
+	{% endfor %}
+	<div class="row">
+		<div class="col-md-12">
+			{% include 'elements/pagination.html' %}
+		</div>
+	</div>
+{% endblock %}

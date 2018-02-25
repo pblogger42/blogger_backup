@@ -1,0 +1,38 @@
+{% extends 'layout/base.html' %}
+
+{% load static %}
+
+{% block content %}
+	<div class="container" style="margin-top: 10px;">
+		<div class="row text-center">
+			{% for message in messages %}
+				<p class="text-{{ message.tags }}">{{ message }}</p>
+			{% endfor %}
+			<form role="form" action="{% url 'perfil' %}" enctype="multipart/form-data" method="POST">
+				{% csrf_token %}
+				<div class="col-md-12 form-group">
+					<img src="{% static user.userprofile.foto_usuario.url %}" class="img-rounded" style="height: 300px; margin-bottom: 20px;">
+					{{ form.foto_usuario }}
+				</div>
+				<div class="col-md-6 form-group">
+					<label>{{ form.first_name.label }}</label>
+					{{ form.first_name }}
+				</div>
+				<div class="col-md-6 form-group">
+					<label>{{ form.last_name.label }}</label>
+					{{ form.last_name }}
+				</div>
+				<div class="col-md-12 form-group">
+					<button type="submit" class="btn btn-success">Actualizar perfil</button>
+					<a href="{% url 'change_password' %}" class="btn btn-primary open-modal" data-toggle="modal" data-target="#Modal">Cambiar contraseña</a>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock content %}
+
+{% block content_script %}
+	<script>
+		$('#id_foto_usuario').attr('style', 'margin: 0px auto;');
+	</script>
+{% endblock content_script %}

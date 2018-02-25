@@ -1,0 +1,16 @@
+{% if form != '' %}
+	<h4><b>Recibe email al día con articulos recientes publicados por las instituciones en convenio</b></h4>
+	<form action="{% url 'suscribe_email' %}?next={{ request_path }}" method="post" accept-charset="utf-8">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-md-9">
+				{{ form.email }}
+			</div>
+			<div class="col-md-3">
+				<div class="form-group text-center">
+					<button type="submit" class="btn btn-success">Suscribirme</button>
+				</div>
+			</div>
+		</div>
+	</form>
+{% endif %}

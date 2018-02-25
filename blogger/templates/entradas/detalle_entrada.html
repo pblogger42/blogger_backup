@@ -1,0 +1,79 @@
+{% extends 'layout/institucion_base.html' %}
+
+{% load static %}
+
+{% block content_instituto %}
+	<div class="row">
+		<div class="col-md-12">
+			<h1>{{ entrada.titulo_entrada }}</h1>
+			<div class="text-center">
+				<img src='{% static entrada.imagen_portada.url %}' class="img-responsive" style="width: 100%;" alt="img-{{ entrada.titulo_entrada }}" style="display: inline;"/>
+			</div>
+			<p><b>Publicado el {{ entrada.fecha_entrada }}</b></p>
+			<div class="row">
+				<div class="col-md-2">
+					<p>Publicado por</p>
+					<div class="img-circle" style="width: 100px; height: 100px; overflow: hidden;">
+						<img src="{% static entrada.usuario.userprofile.foto_usuario.url %}" style="height: 100px; margin-left: -20px;">
+					</div>
+					<b>{{ entrada.usuario.first_name }} {{ entrada.usuario.last_name }}</b>
+				</div>
+				<div class="col-md-10">
+					{{ entrada.descripcion_entrada|safe }}
+				</div>
+			</div>
+			{% if user.userprofile.institucion.slug_institucion == object.slug_institucion or user.is_superuser %}
+				<div class="text-center" style="margin-top: 10px;">
+					<a href="{% url 'institucion_entrada_editar' object.slug_institucion entrada.slug_entrada %}" class="btn btn-primary">
+						<i class="glyphicon glyphicon-pencil"></i>
+						Editar entrada
+					</a>
+					<a href="{% url 'institucion_entrada_eliminar' object.slug_institucion entrada.slug_entrada %}" class="btn btn-danger open-modal" data-toggle="modal" data-target="#Modal">
+						<i class="glyphicon glyphicon-remove"></i>
+						Eliminar entrada
+					</a>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+	<div class="page-header">
+		<h2>
+			Comentarios
+			{% if user.is_authenticated %}
+				<a href="{% url 'institucion_comentario_crear' object.slug_institucion entrada.slug_entrada %}" class="btn btn-default open-modal" data-toggle="modal" data-target="#Modal">Comentar</a>
+			{% endif %}
+		</h2>
+	</div>
+	<div class="row">
+		{% for comentario in entrada.comentario_set.all %}
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-1">
+						<div class="img-circle" style="width: 50px; height: 50px; overflow: hidden;">
+							<img src="{% static comentario.usuario.userprofile.foto_usuario.url %}" style="height: 50px; margin-left: -20px;">
+						</div>
+					</div>
+					<div class="col-md-11">
+						<p><b>Usuario:</b> {{ comentario.usuario.first_name }} {{ comentario.usuario.last_name }}</p>
+						<p><b>Fecha de publicación:</b> {{ comentario.fecha }}</p>
+					</div>
+				</div>
+				{{ comentario.comentario_entrada|safe }}
+				{% if user.userprofile.institucion.slug_institucion == object.slug_institucion or comentario.user == user or user.is_superuser %}
+					<a href="{% url 'institucion_comentario_editar' object.slug_institucion entrada.slug_entrada comentario.pk %}" class="btn btn-warning open-modal" data-toggle="modal" data-target="#Modal">Editar comentario</a>
+					<a href="{% url 'institucion_comentario_eliminar' object.slug_institucion entrada.slug_entrada comentario.pk %}" class="btn btn-danger open-modal" data-toggle="modal" data-target="#Modal">Eliminar comentario</a>
+				{% endif %}
+				<hr/>
+			</div>
+		{% empty %}
+			<div class="col-md-12 text-center">
+				<h4>No hay comentarios en la entrada</h4>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{% include 'elements/pagination.html' %}
+		</div>
+	</div>
+{% endblock %}

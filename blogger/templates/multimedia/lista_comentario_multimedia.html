@@ -1,0 +1,61 @@
+{% load static %}
+
+<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+		<div class="modal-body" style="padding: 0px; padding-right: 15px;">
+			<div class="row">
+				<div class="col-md-6">
+					{% if object.tipo_multimedia == 'v' %}
+						<iframe width="420" height="290" src="https://www.youtube.com/embed/{{ object.embed_code }}?badge=0&autoplay=1&html5=1" frameborder="0" allowfullscreen></iframe>
+					{% else %}
+						<img src="{{ object.img_resource }}" class="img-responsive" style="width: 100%;">
+					{% endif %}
+				</div>
+				<div class="col-md-6" style="padding: 10px 10px;">
+					<h4>{{ object.nombre_multimedia }}</h4>
+					<div id="comments" style="overflow-y: scroll; max-height: 150px;">
+						{% for comentario in object_list %}
+							<p><b>{{ comentario.usuario.first_name }} {{ comentario.usuario.last_name }}: </b>{{ comentario.comentario }}</p>
+						{% endfor %}
+					</div>
+					{% if user.is_authenticated %}
+						<div style="margin-top: 15px;">
+							<form action="{% url 'institucion_multimedia_detalle' object.institucion.slug_institucion object.slug_multimedia %}" method="post" accept-charset="utf-8">
+								{% csrf_token %}
+								<div class="col-md-10">
+									{{ form.comentario }}
+								</div>
+								<div class="col-md-2">
+									<button type="submit" class="btn img-circle" style="border-radius: 50%; width: 40px; height: 40px; background-color: #337ab7; color: white; padding: 9px;">
+										<i class="glyphicon glyphicon-chevron-right"></i>
+									</button>
+								</div>
+							</form>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$("img").error(function(){
+		$(this).attr('src', '/static/img/none.jpg');
+	});
+	$('form').submit(function(event){
+		var comentario = $('#id_comentario');
+		$('#comments').prepend(
+			'<p>'+
+				'<b>{{ user.first_name }} {{ user.last_name }}: </b>'+
+				comentario.val()+
+			'</p>'
+		);
+		$.post($(this).attr('action'), $(this).serialize()).done(function(response){
+			if(response.type_message == 'false'){
+				alert(response.message);
+			}
+		});
+		comentario.val('');
+		event.preventDefault();
+	});
+</script>
